@@ -1,0 +1,77 @@
+h1 {
+  font-size: 60px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 30px;  /* 好きな値でOK */
+}
+
+.box1,
+.box2{
+    background: yellowgreen;
+    border: 3px solid black;
+    border-radius: 10px;             /* 角丸 */
+    box-shadow: 0 4px 6px #0003;     /* 影 */
+    min-height: 300px;
+    height: auto;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.hp,
+.atk,
+.def,
+.magic-atk,
+.magic-def,
+.s,
+.caveat{
+    font-size: 18px;
+    font-weight: bold;
+}
+.hp{
+    color: green;
+}
+
+.atk,
+.caveat{
+    color: red;
+}
+
+.def{
+    color: blue;
+}
+
+.magic-atk{
+    color: purple;
+}
+
+.magic-def{
+    color: skyblue;
+}
+
+.s{
+    color: yellowgreen;
+}
+
+.footer {
+  background-color: #000;      /* 黒背景 */
+  color: white;                /* 文字色 白 */
+  text-align: center;          /* 中央寄せ */
+  padding: 30px 0;             /* 上下にゆとりを持たせる */
+}
+
+.form-link,
+.form-link:visited,
+.form-link:hover,
+.form-link:active {
+    color: skyblue;
+}
+
+button {
+    margin-top: 30px;
+}

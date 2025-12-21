@@ -1,0 +1,70 @@
+h1{
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+img {
+  display: block;       /* imgをブロック要素に変換 */
+  margin-left: auto;    /* 左余白を自動 */
+  margin-right: auto;   /* 右余白を自動 */
+  margin-bottom: 50px;
+}
+
+.monsters-choice,
+.level-and-belongings{
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.monsters-name,
+.level,
+.belongings,
+.personality {
+  font-size: 14px;
+  padding: 3px 5px;
+}
+
+.level,
+.belongings,
+.personality {
+    margin: 0 5px;
+}
+
+.graph-button {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.graph {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  border: 3px solid black;
+  border-radius: 10px;             /* 角丸 */
+  box-shadow: 0 4px 6px #0003; 
+  margin-bottom: 50px;
+  padding: 30px;
+}
+
+.line-by-line {
+  display: flex;
+  gap: 25px;
+  font-size: 20px;
+}
+
+.box1{
+    background: yellowgreen;
+    border: 3px solid black;
+    border-radius: 10px;             /* 角丸 */
+    box-shadow: 0 4px 6px #0003;     /* 影 */
+    height: 230px;
+    margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom: 30px;  /* 好きな値でOK */
+}
