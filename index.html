@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>育成能力予測ツール (パスワード保護)</title>
+    <link href="style/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>
+        育成能力予測ツール
+    </h1>
+    <p id="top">
+        このページは各生態系のレベルや持ち物、性格などに応じて、能力値を予測するツールです。<br>
+        能力値には<span class="hp">H(HP)</span>、<span class="atk">A(攻撃力)</span>、<span class="def">D(防御力)</span>、<span class="magic-atk">MA(魔法攻撃力)</span>、<span class="magic-def">MD(魔法防御力)</span>、<span class="s">S(すばやさ)</span>の6種類です
+    </p>
+
+    <div class="box1">
+        <h2>・能力値予測計算</h2>
+        <p id="ability-value">
+            次のリンクを押すことで、能力値計算ページに飛びます<br>
+            自分の好きな生態を選び、レベルや持ち物などを設定することで、能力値を計算します<br>
+            能力値結果は、数値表示(A: 〇〇 　D: ▽▽　……)、棒グラフ、レーダーグラフの3つで表されます。(表示方法選択可)
+        </p>
+        <a href="index2.html">能力値計算ページへ飛ぶ</a>
+    </div>
+
+    <div class="box2">
+        <h2>・上記ツールの全体コード</h2>
+        <p id="all-code">
+            次のページには今回作成した能力値計算ツールのJavaScriptの全体コードとcssの全体コードが記載されています<br>
+            ポケモンの能力値計算など(この場合、<span class="caveat">著作権に引っかかる可能性があるのでWeb上に公開はしないで</span>)のご自身の好きなようにページを改造してもらって構いません
+        </p>
+        <a href="code.html">全体コードページに飛ぶ</a>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Nihon Univercity student 5424029 Website</p>
+        <p>
+            お問い合わせや感想 : 
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf9XANhQ4Z_k-KaqbtMBqf16jVdyjbFenzWEwDS1NQgt7z8lw/viewform?usp=sf_link" class="form-link">回答フォームへ</a>
+        </p>
+    </footer>
+
+   <script>
+    const password = "0110"; // ←パスワードを変更可能
+
+    // セッション中にログイン済みならスキップ
+    if (sessionStorage.getItem("loginOK") === "true") {
+      // 何もしない（ページ公開）
+    } else {
+        const input = prompt("パスワードを入力してください：");
+        if (input === password) {
+            // 正しい → セッションに保存
+            sessionStorage.setItem("loginOK", "true");
+        } else {
+            alert("パスワードが違います。");
+            location.href = "about:blank"; // 間違ったらページから退避
+        }
+    }
+   </script>
+  </body>
+</html>
