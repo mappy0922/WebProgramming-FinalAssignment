@@ -174,16 +174,24 @@ export default function App() {
         />
 
         <div className="belongings-list">持ち物</div>
-        <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
-          {monsterOptions[selected.name].items.map(i => <option key={i}>{i}</option>)}
-        </select>
-        <div className="tooltip">{itemDescription[item]}</div>
+        <div className="tooltip-wrapper">
+          <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
+            {monsterOptions[selected.name].items.map(i => 
+              <option key={i}>{i}</option>
+            )}
+          </select>
+          <div className="tooltip">{itemDescription[item]}</div>
+        </div>
 
         <div className="personality-list">性格</div>
-        <select className="personality" value={personality} onChange={(e) => setPersonality(e.target.value)}>
-          {monsterOptions[selected.name].personalities.map(p => <option key={p}>{p}</option>)}
-        </select>
-        <div className="tooltip">{personalityDescription[personality]}</div>
+        <div className="tooltip-wrapper">
+          <select className="personality" value={personality} onChange={(e) => setPersonality(e.target.value)}>
+            {monsterOptions[selected.name].personalities.map(p => 
+              <option key={p}>{p}</option>
+            )}
+          </select>
+          <div className="tooltip">{personalityDescription[personality]}</div>
+        </div>
       </div>
 
       <div className="graph-button">
