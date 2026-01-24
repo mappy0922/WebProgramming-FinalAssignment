@@ -73,6 +73,33 @@ const personalityBonus = {
   "しなやか": { a: 1, d: 1.5, ma: 1, md: 0.5, s: 1.5 }
 };
 
+const itemDescription = {
+  "なし": "補正なし",
+  "ボクサーグローブ": "攻撃力が上昇",
+  "ふつうのたて": "防御力が上昇",
+  "スーツ": "HP・防御が上がるが素早さ低下",
+  "しゅんそくブーツ": "人間は素早さUP、それ以外はDOWN",
+  "ほねのおもちゃ": "HP・攻撃・素早さが上昇",
+  "おうかんバンダナ": "全体的に強化",
+  "リード": "攻撃・防御UP",
+  "ねこじゃらし": "魔法攻撃・素早さUP",
+  "キャットタワー": "HP・防御UP、素早さDOWN",
+  "プラチナゆびわ": "ほぼ全能力強化"
+};
+
+const personalityDescription = {
+  "せっかち": "防御DOWN、素早さUP",
+  "おだやか": "攻撃DOWN、魔法防御UP",
+  "れいせい": "素早さDOWN、魔法攻撃UP",
+  "ゆうかん": "素早さDOWN、攻撃UP",
+  "やんちゃ": "魔法防御DOWN、攻撃UP",
+  "すばしっこい": "魔法攻撃DOWN、素早さUP",
+  "きまぐれ": "魔法防御DOWN、素早さUP",
+  "おとなしい": "攻撃DOWN、魔法防御UP (素早さも微減)",
+  "インテリ": "防御DOWN、魔法攻撃UP",
+  "しなやか": "魔法防御DOWN、防御UP、素早さUP"
+};
+
 /* --- モンスターごとの選択可能な持ち物と性格 --- */
 const monsterOptions = {
   "一般人": {
@@ -151,27 +178,53 @@ export default function App() {
       <img src={selected.image} alt={selected.name} className="img" />
 
       <div className="level-and-belongings">
+        <div className="level-value">LV {level}</div>
         <input
-          type="number"
+          type="range"
           min="1"
           max="100"
           value={level}
-          onChange={(e) => setLevel(Math.min(100, Math.max(1, Number(e.target.value) || 1)))}
+          onChange={(e) => setLevel(Number(e.target.value))}
           className="level"
         />
-        <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
-          {monsterOptions[selected.name].items.map(i => <option key={i}>{i}</option>)}
-        </select>
-        <select className="personality" value={personality} onChange={(e) => setPersonality(e.target.value)}>
-          {monsterOptions[selected.name].personalities.map(p => <option key={p}>{p}</option>)}
-        </select>
+
+        <div className="belongings-list">持ち物</div>
+        <div className="tooltip-wrapper">
+          <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
+            {monsterOptions[selected.name].items.map(i => 
+              <option key={i}>{i}</option>
+            )}
+          </select>
+          <div className="tooltip">{itemDescription[item]}</div>
+        </div>
+
+        <div className="personality-list">性格</div>
+        <div className="tooltip-wrapper">
+          <select className="personality" value={personality} onChange={(e) => setPersonality(e.target.value)}>
+            {monsterOptions[selected.name].personalities.map(p => 
+              <option key={p}>{p}</option>
+            )}
+          </select>
+          <div className="tooltip">{personalityDescription[personality]}</div>
+        </div>
       </div>
 
-      <div className="graph-button">
-        <button onClick={() => setGraphType("radar")}>レーダーグラフ</button>
-        <button onClick={() => setGraphType("bar")}>棒グラフ</button>
-        <button onClick={() => setGraphType("table")}>数値表示</button>
+      <div className="graph-toggle">
+        {[
+          { key: "radar", label: "レーダー" },
+          { key: "bar", label: "棒グラフ" },
+          { key: "table", label: "数値" }
+        ].map((btn) => (
+          <button
+            key={btn.key}
+            onClick={() => setGraphType(btn.key)}
+            className={\` toggle-btn \${graphType === btn.key ? "active" : ""}\`}
+          >
+            {btn.label}
+          </button>
+        ))}
       </div>
+
 
       <div className="graph">
         {graphType === "radar" ? (
@@ -248,11 +301,6 @@ img {
     margin: 0 5px;
 }
 
-.graph-button {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
 .graph {
   display: flex;
   justify-content: center;
@@ -270,20 +318,55 @@ img {
   font-size: 20px;
 }
 
-.box1{
-    background: yellowgreen;
-    border: 3px solid black;
-    border-radius: 10px;             /* 角丸 */
-    box-shadow: 0 4px 6px #0003;     /* 影 */
-    height: 230px;
-    margin-bottom: 50px;
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
-h2 {
-  font-size: 30px;
-  text-align: center;
-  text-decoration: underline;
-  margin-bottom: 30px;  /* 好きな値でOK */
+.tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.tooltip-wrapper:hover .tooltip {
+  opacity: 1;
+}
+
+.graph-toggle {
+  display: inline-flex;
+  border: 2px solid #8884d8;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.toggle-btn {
+  padding: 8px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: rgba(136, 132, 216, 0.15);
+}
+
+.toggle-btn.active {
+  background: #8884d8;
+  color: white;
 }
 `;
 document.getElementById("codeView2").textContent = code2;
