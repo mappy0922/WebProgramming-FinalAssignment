@@ -137,13 +137,14 @@ export default function App() {
 
       <div className="level-and-belongings">
         <input
-          type="number"
+          type="range"
           min="1"
           max="100"
           value={level}
-          onChange={(e) => setLevel(Math.min(100, Math.max(1, Number(e.target.value) || 1)))}
+          onChange={(e) => setLevel(Number(e.target.value))}
           className="level"
         />
+        <div className="level-value">LV {level}</div>
         <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
           {monsterOptions[selected.name].items.map(i => <option key={i}>{i}</option>)}
         </select>
