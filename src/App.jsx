@@ -136,6 +136,7 @@ export default function App() {
       <img src={selected.image} alt={selected.name} className="img" />
 
       <div className="level-and-belongings">
+        <div className="level-value">LV {level}</div>
         <input
           type="range"
           min="1"
@@ -144,10 +145,11 @@ export default function App() {
           onChange={(e) => setLevel(Number(e.target.value))}
           className="level"
         />
-        <div className="level-value">LV {level}</div>
+        <div className="belongings-list">持ち物</div>
         <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
           {monsterOptions[selected.name].items.map(i => <option key={i}>{i}</option>)}
         </select>
+        <div className="personality-list">性格</div>
         <select className="personality" value={personality} onChange={(e) => setPersonality(e.target.value)}>
           {monsterOptions[selected.name].personalities.map(p => <option key={p}>{p}</option>)}
         </select>
