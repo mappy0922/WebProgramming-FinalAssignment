@@ -58,6 +58,33 @@ const personalityBonus = {
   "しなやか": { a: 1, d: 1.5, ma: 1, md: 0.5, s: 1.5 }
 };
 
+const itemDescription = {
+  "なし": "補正なし",
+  "ボクサーグローブ": "攻撃力が上昇",
+  "ふつうのたて": "防御力が上昇",
+  "スーツ": "HP・防御が上がるが素早さ低下",
+  "しゅんそくブーツ": "人間は素早さUP、それ以外はDOWN",
+  "ほねのおもちゃ": "HP・攻撃・素早さが上昇",
+  "おうかんバンダナ": "全体的に強化",
+  "リード": "攻撃・防御UP",
+  "ねこじゃらし": "魔法攻撃・素早さUP",
+  "キャットタワー": "HP・防御UP、素早さDOWN",
+  "プラチナゆびわ": "ほぼ全能力強化"
+};
+
+const personalityDescription = {
+  "せっかち": "防御DOWN、素早さUP",
+  "おだやか": "攻撃DOWN、魔法防御UP",
+  "れいせい": "素早さDOWN、魔法攻撃UP",
+  "ゆうかん": "素早さDOWN、攻撃UP",
+  "やんちゃ": "魔法防御DOWN、攻撃UP",
+  "すばしっこい": "魔法攻撃DOWN、素早さUP",
+  "きまぐれ": "魔法防御DOWN、素早さUP",
+  "おとなしい": "攻撃DOWN、魔法防御UP (素早さも微減)",
+  "インテリ": "防御DOWN、魔法攻撃UP",
+  "しなやか": "魔法防御DOWN、防御UP、素早さUP"
+};
+
 /* --- モンスターごとの選択可能な持ち物と性格 --- */
 const monsterOptions = {
   "一般人": {
@@ -145,14 +172,18 @@ export default function App() {
           onChange={(e) => setLevel(Number(e.target.value))}
           className="level"
         />
+
         <div className="belongings-list">持ち物</div>
         <select className="belongings" value={item} onChange={(e) => setItem(e.target.value)}>
           {monsterOptions[selected.name].items.map(i => <option key={i}>{i}</option>)}
         </select>
+        <div className="tooltip">{itemDescription[item]}</div>
+
         <div className="personality-list">性格</div>
         <select className="personality" value={personality} onChange={(e) => setPersonality(e.target.value)}>
           {monsterOptions[selected.name].personalities.map(p => <option key={p}>{p}</option>)}
         </select>
+        <div className="tooltip">{personalityDescription[personality]}</div>
       </div>
 
       <div className="graph-button">
