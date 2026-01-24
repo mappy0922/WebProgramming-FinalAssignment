@@ -31,11 +31,6 @@ img {
     margin: 0 5px;
 }
 
-.graph-button {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
 .graph {
   display: flex;
   justify-content: center;
@@ -93,3 +88,30 @@ h2 {
 .tooltip-wrapper:hover .tooltip {
   opacity: 1;
 }
+
+.graph-toggle {
+  display: inline-flex;
+  border: 2px solid #8884d8;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.toggle-btn {
+  padding: 8px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: rgba(136, 132, 216, 0.15);
+}
+
+.toggle-btn.active {
+  background: #8884d8;
+  color: white;
+}
+

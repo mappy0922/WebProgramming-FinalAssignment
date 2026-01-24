@@ -194,11 +194,22 @@ export default function App() {
         </div>
       </div>
 
-      <div className="graph-button">
-        <button onClick={() => setGraphType("radar")}>レーダーグラフ</button>
-        <button onClick={() => setGraphType("bar")}>棒グラフ</button>
-        <button onClick={() => setGraphType("table")}>数値表示</button>
+      <div className="graph-toggle">
+        {[
+          { key: "radar", label: "レーダー" },
+          { key: "bar", label: "棒グラフ" },
+          { key: "table", label: "数値" }
+        ].map((btn) => (
+          <button
+            key={btn.key}
+            onClick={() => setGraphType(btn.key)}
+            className={`toggle-btn ${graphType === btn.key ? "active" : ""}`}
+          >
+            {btn.label}
+          </button>
+        ))}
       </div>
+
 
       <div className="graph">
         {graphType === "radar" ? (
