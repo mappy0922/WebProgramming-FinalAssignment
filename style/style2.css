@@ -48,22 +48,6 @@ img {
   font-size: 20px;
 }
 
-.box1{
-    background: yellowgreen;
-    border: 3px solid black;
-    border-radius: 10px;             /* 角丸 */
-    box-shadow: 0 4px 6px #0003;     /* 影 */
-    height: 230px;
-    margin-bottom: 50px;
-}
-
-h2 {
-  font-size: 30px;
-  text-align: center;
-  text-decoration: underline;
-  margin-bottom: 30px;  /* 好きな値でOK */
-}
-
 .tooltip-wrapper {
   position: relative;
   display: inline-block;
