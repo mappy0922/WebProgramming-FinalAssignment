@@ -1,0 +1,19 @@
+body {
+    font-family: monospace;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+pre {
+    font-size: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;   
+}
+
+.code2 {
+    margin-top: 100px;
+}
