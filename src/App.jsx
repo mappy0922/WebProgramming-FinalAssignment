@@ -146,21 +146,31 @@ export default function App() {
     <div className="top">
       <h1 className="title">ステータスシミュレーター</h1>
       
-      <div className="monsters-choice">
-        <select
-          className="monsters-name"
-          value={selected.name}
-          onChange={(e) => {
-            const m = monsters.find(mon => mon.name === e.target.value);
-            setSelected(m);
-            setItem(monsterOptions[m.name].items[0]);
-            setPersonality(monsterOptions[m.name].personalities[0]);
-          }}>
-          {monsters.map((m) => <option key={m.name}>{m.name}</option>)}
-        </select>
+      {/* --- モンスターカードUI --- */}
+      <div className="monster-cards">
+        {monsters.map((m) => (
+          <div
+            key={m.name}
+            className={`monster-card ${selected.name === m.name ? "active" : ""}`}
+            onClick={() => {
+              setSelected(m);
+              setItem(monsterOptions[m.name].items[0]);
+              setPersonality(monsterOptions[m.name].personalities[0]);
+            }}
+          >
+            <img src={m.image} alt={m.name} />
+            <h3>{m.name}</h3>
+            <div className="mini-stats">
+              <span>HP {m.base.h}</span>
+              <span>A {m.base.a}</span>
+              <span>D {m.base.d}</span>
+              <span>MA {m.base.ma}</span>
+              <span>MD {m.base.md}</span>
+              <span>S {m.base.s}</span>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <img src={selected.image} alt={selected.name} className="img" />
 
       <div className="level-and-belongings">
         <div className="level-value">LV {level}</div>
