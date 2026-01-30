@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         main: "./index.html",
         calc: "./index2.html",
+        code: "./code.html"
       },
     },
   },
